@@ -1,10 +1,13 @@
 import React from 'react'
 
 import ExpenseForm from '~/components/expenses/ExpenseForm'
+import Modal from '~/components/util/Modal'
 
 const UpdateExpensesPage = () => {
     return (
-        <ExpenseForm />
+        <Modal>
+            <ExpenseForm />
+        </Modal>
     )    
 }
 
