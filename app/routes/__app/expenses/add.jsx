@@ -18,4 +18,8 @@ const AddExpensesPage = () => {
     )    
 }
 
+export const action = () => {
+    
+}
+
 export default AddExpensesPage
