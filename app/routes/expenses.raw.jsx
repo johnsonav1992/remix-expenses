@@ -1,11 +1,20 @@
 // expenses raw
 
-import React from 'react'
+const DUMMY_EXPENSES = [
+    {
+        id: 'e1',
+        title: 'First Expense',
+        amount: 12.99,
+        date: new Date().toISOString()
+    },
+    {
+        id: 'e2',
+        title: 'Second Expense',
+        amount: 14.99,
+        date: new Date().toISOString()
+    }
+]
 
-const ExpensesRawPage = () => {
-    return (
-        <div>Expenses</div>
-    )    
+export const loader = () => {
+    return DUMMY_EXPENSES
 }
-
-export default ExpensesRawPage
