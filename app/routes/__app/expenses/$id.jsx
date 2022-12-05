@@ -5,6 +5,7 @@ import React from 'react'
 import ExpenseForm from '~/components/expenses/ExpenseForm'
 import Modal from '~/components/util/Modal'
 import { updateExpense } from '~/data/expenses.server'
+import { validateExpenseInput } from '~/data/validation.server'
 // import { getExpense } from '~/data/expenses.server'
 
 const UpdateExpensesPage = () => {
@@ -31,8 +32,14 @@ export const action = async ({ params, request }) => {
     const expenseId = params.id
     const formData = await request.formData()
     const expenseData = Object.fromEntries(formData)
+
+    try {
+        validateExpenseInput(expenseData)
+    } catch (err) {
+        return err
+    }
     
-    updateExpense(expenseId, expenseData)
+    await updateExpense(expenseId, expenseData)
     return redirect('/expenses')
 }
 
