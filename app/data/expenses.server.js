@@ -48,3 +48,13 @@ export const updateExpense = async (id, expenseData) => {
         console.error(err)
     }
 }
+
+export const deleteExpense = async (id) => {
+    try {
+        return await prisma.expense.delete({ 
+            where: { id }
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
