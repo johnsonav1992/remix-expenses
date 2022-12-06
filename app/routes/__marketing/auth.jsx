@@ -10,6 +10,20 @@ const AuthPage = () => {
     )    
 }
 
+export const action = async ({ request }) => {
+    const searchParams = new URL(request.url).searchParams
+    const authMode = searchParams.get('mode') || 'login'
+
+    const formData = await requestAnimationFrame.formData()
+    const credentials = Object.fromEntries(formData)
+
+    if (authMode === 'login') {
+        
+    } else {
+
+    }
+}
+
 export const links = () => {
     return [{rel: 'stylesheet', href: authStyles}]
 }
