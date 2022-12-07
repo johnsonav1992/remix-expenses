@@ -7,6 +7,8 @@ import { getExpenses } from '~/data/expenses.server'
 const ExpensesLayout = () => {
     const expenses = useLoaderData()
 
+    const hasExpenses = expenses & expenses.length > 0
+
     return (
         <>
             <Outlet />
@@ -21,7 +23,13 @@ const ExpensesLayout = () => {
                         <span>Load Raw Data</span>
                     </a>
                 </section>
-                <ExpensesList expenses={expenses}/>
+                { hasExpenses && <ExpensesList expenses={expenses}/>}
+                { !hasExpenses && 
+                    <section id="no-expenses">
+                        <h1>No expenses found</h1>
+                        <p>Start <Link to="add">adding some</Link>today.</p>
+                    </section>
+                }
             </main>
         </>
     )
@@ -29,8 +37,13 @@ const ExpensesLayout = () => {
 
 export const loader = async () => {
     const expenses = await getExpenses()
+
+    // if (!expenses || expenses.length === 0) {
+    //     throw json({message: 'Could not find any expenses.'}, {status: 404, statusText: 'Could not find any expenses.'})
+    // }
     return expenses
 }
+
 
 
 export default ExpensesLayout
