@@ -18,9 +18,9 @@ export const action = async ({ request }) => {
     const credentials = Object.fromEntries(formData)
 
     if (authMode === 'login') {
-        
-    } else {
 
+    } else {
+    
     }
 }
 
