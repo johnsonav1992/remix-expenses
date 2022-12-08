@@ -27,7 +27,7 @@ const ExpensesLayout = () => {
                 { !hasExpenses && 
                     <section id="no-expenses">
                         <h1>No expenses found</h1>
-                        <p>Start <Link to="add">adding some</Link>today.</p>
+                        <p>Start <Link to="add">adding some </Link>today.</p>
                     </section>
                 }
             </main>
