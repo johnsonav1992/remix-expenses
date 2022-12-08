@@ -6,8 +6,8 @@ import { getExpenses } from '~/data/expenses.server'
 
 const ExpensesLayout = () => {
     const expenses = useLoaderData()
-
-    const hasExpenses = expenses & expenses.length > 0
+    
+    const hasExpenses = expenses && expenses.length > 0
 
     return (
         <>
