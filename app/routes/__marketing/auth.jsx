@@ -1,5 +1,7 @@
+import { redirect } from '@remix-run/node'
 import React from 'react'
 import AuthForm from '~/components/auth/AuthForm'
+import { signup } from '~/data/auth.server'
 import { validateCredentials } from '~/data/validation.server'
 
 import authStyles from '~/styles/auth.css'
@@ -24,10 +26,19 @@ export const action = async ({ request }) => {
         return err
     }
 
-    if (authMode === 'login') {
+    try {
+        if (authMode === 'login') {
 
-    } else {
-    
+        } else {
+            await signup(credentials)
+            return redirect('/expenses')  
+        }
+    } catch (err) {
+        if (err.status === 422) {
+            return {
+                credentials: err.message
+            }
+        }
     }
 }
 
