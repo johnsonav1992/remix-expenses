@@ -59,3 +59,15 @@ export const login = async ({ email, password }) => {
 
     return createUserSession(existingUser.id, '/expenses')
 }
+
+export const getUserFromSession = async (request) => {
+    const session = await sessionStorage.getSession(request.headers.get('Cookie'))
+
+    const userId = session.get('userId')
+
+    if (!userId) {
+        return null
+    }
+
+    return userId
+}

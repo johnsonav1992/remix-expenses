@@ -1,5 +1,3 @@
-import { redirect } from '@remix-run/node'
-import React from 'react'
 import AuthForm from '~/components/auth/AuthForm'
 import { login, signup } from '~/data/auth.server'
 import { validateCredentials } from '~/data/validation.server'
@@ -17,7 +15,7 @@ export const action = async ({ request }) => {
     const searchParams = new URL(request.url).searchParams
     const authMode = searchParams.get('mode') || 'login'
 
-    const formData = await requestAnimationFrame.formData()
+    const formData = await request.formData()
     const credentials = Object.fromEntries(formData)
 
     try {
