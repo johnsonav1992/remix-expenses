@@ -2,5 +2,8 @@
     "editor.formatOnPaste": false,
     "editor.formatOnSave": false,
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "eslint.format.enable": true
+    "eslint.format.enable": true,
+    "[prisma]": {
+        "editor.defaultFormatter": "Prisma.prisma"
+    }
 }
