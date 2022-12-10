@@ -1,5 +1,6 @@
 import React from 'react'
 import AuthForm from '~/components/auth/AuthForm'
+import { validateCredentials } from '~/data/validation.server'
 
 import authStyles from '~/styles/auth.css'
 
@@ -16,6 +17,12 @@ export const action = async ({ request }) => {
 
     const formData = await requestAnimationFrame.formData()
     const credentials = Object.fromEntries(formData)
+
+    try {
+        validateCredentials(credentials)
+    } catch (err) {
+        return err
+    }
 
     if (authMode === 'login') {
 
