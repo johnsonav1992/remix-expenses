@@ -26,7 +26,7 @@ export const login = async ({ email, password }) => {
 
     const passwordIsCorrect = await compare(password, existingUser.password)
 
-    if (passwordIsCorrect) {
+    if (!passwordIsCorrect) {
         const error = new Error('Could not log in - password incorrect. Please try again')
         error.status = 401
         throw error
