@@ -3,6 +3,7 @@ import Logo from '../util/Logo';
 
 function MainHeader() {
   const userId = useLoaderData()
+  console.log(userId)
 
   return (
     <header id="main-header">
@@ -22,7 +23,7 @@ function MainHeader() {
           <li>
             {userId && 
             <Form method='post' action="/logout" id="logout-form">
-              <button className="cta-alt">
+              <button className="cta-alt" type='submit'>
                 Logout
               </button>
             </Form>}

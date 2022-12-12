@@ -81,3 +81,13 @@ export const getUserFromSession = async (request) => {
 
     return userId
 }
+
+export const requireUserSession = async (request) => {
+    const userId = await getUserFromSession(request)
+
+    if (!userId) {
+        throw redirect('auth?mode=login')
+    }
+    
+    return userId
+}

@@ -6,6 +6,7 @@ import ExpenseStatistics from '~/components/expenses/ExpenseStatistics'
 import Chart from '~/components/expenses/Chart'
 import { getExpenses } from '~/data/expenses.server'
 import Error from '~/components/util/Error'
+import { requireUserSession } from '~/data/auth.server'
 
 const ExpensesAnalysisPage = () => {
     const expenses = useLoaderData()
@@ -18,8 +19,9 @@ const ExpensesAnalysisPage = () => {
     )    
 }
 
-export const loader = async () => {
-    const expenses = await getExpenses()
+export const loader = async ({ request }) => {
+    const userId = await requireUserSession(request)
+    const expenses = await getExpenses(userId)
 
     if (!expenses || expenses.length === 0) {
         throw json( { message: 'Could not load expenses analysis'}, {

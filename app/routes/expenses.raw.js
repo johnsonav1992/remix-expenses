@@ -1,20 +1,9 @@
 // expenses raw
 
-const DUMMY_EXPENSES = [
-    {
-        id: 'e1',
-        title: 'First Expense',
-        amount: 12.99,
-        date: new Date().toISOString()
-    },
-    {
-        id: 'e2',
-        title: 'Second Expense',
-        amount: 14.99,
-        date: new Date().toISOString()
-    }
-]
+import { requireUserSession } from "~/data/auth.server"
+import { getExpenses } from "~/data/expenses.server"
 
-export const loader = () => {
-    return DUMMY_EXPENSES
+export const loader = async ({ request }) => {
+    const userId = await requireUserSession(request)
+    return getExpenses(userId)
 }
