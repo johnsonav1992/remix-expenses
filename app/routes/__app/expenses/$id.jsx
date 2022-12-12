@@ -49,7 +49,7 @@ export const action = async ({ params, request }) => {
 }
 
 export const meta = ({ params, location, data, parentsData }) => {
-    const expense = parentsData('routes_/_app/expenses').find(expense => expense.id === params.id)
+    const expense = parentsData['routes/__app/expenses'].find(expense => expense.id === params.id)
     return {
         title: expense.title
     }
